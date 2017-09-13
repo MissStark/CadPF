@@ -6,10 +6,12 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 public class Cadastro extends JFrame {
 	JLabel Nome = new JLabel("Nome: ");
@@ -18,39 +20,44 @@ public class Cadastro extends JFrame {
 	JLabel S = new JLabel("Sexo: ");
 	JRadioButton[]sexo = new JRadioButton[2];
 	ButtonGroup grupo = new ButtonGroup();{
-	
 	sexo[0] = new JRadioButton("Fem");
 	sexo[1] = new JRadioButton("Masc");}
 	
 	
 	JLabel End = new JLabel("Endereço: ");
 	JTextField txtEnd = new JTextField();
+	
 	JLabel B = new JLabel("Bairro: ");
 	JTextField txtB = new JTextField();
+	
 	JLabel Cep = new JLabel("CEP: ");
-	JTextField txtCep = new JTextField();
+	JFormattedTextField txtCep = null;
+	
 	JLabel Cid = new JLabel("Cidade: ");
 	JTextField txtCid = new JTextField();
 	
 	JLabel Est = new JLabel("Estado: ");
 	JComboBox comboEst = new JComboBox();
 	
-	
-	
 	JLabel Tel = new JLabel("Telefone: ");
-	JTextField txtTel = new JTextField();
+	JFormattedTextField txtTel = null;
+	
 	JLabel Cel = new JLabel("Celular: ");
-	JTextField txtCel = new JTextField();
+	JFormattedTextField txtCel = null;
+	
 	JLabel RG = new JLabel("RG: ");
-	JTextField txtRG = new JTextField();
+	JFormattedTextField txtRG = null;
+	
 	JLabel Cpf = new JLabel("CPF: ");
-	JTextField txtCpf = new JTextField();
+	JFormattedTextField txtCpf = null;
 	
+	MaskFormatter formatTel = null;
+	MaskFormatter formatCel= null;
+	MaskFormatter formatRG = null;
+	MaskFormatter formatCpf = null;
+	MaskFormatter formatCep = null;
 
-	
-
-	
-public Cadastro(){
+	public Cadastro(){
 	super("Cadastro");
 	
 	Container paine = this.getContentPane();
@@ -79,6 +86,13 @@ public Cadastro(){
 	paine.add(txtB);
 	txtB.setBounds(400, 85, 255, 30);
 	
+	
+	try {
+		formatCep = new MaskFormatter("#####-###");
+		txtCep = new JFormattedTextField(formatCep);
+	} catch (Exception ex){
+		ex.printStackTrace();
+	}
 	paine.add(Cep);
 	Cep.setBounds(480, 50, 55, 30);
 	paine.add(txtCep);
@@ -109,28 +123,50 @@ public Cadastro(){
 	
 	comboEst.setBounds(400, 50, 55, 30);
 	
+	try {
+		formatTel = new MaskFormatter("(##)####-####");
+		txtTel = new JFormattedTextField(formatTel);
+	} catch (Exception ex){
+		ex.printStackTrace();
+	}
 	paine.add(Tel);
 	Tel.setBounds(10, 120, 55, 30);
 	paine.add(txtTel);
 	txtTel.setBounds(90, 120, 255, 30);
 	
+	try {
+		formatCel = new MaskFormatter("(##)#####-####");
+		txtCel = new JFormattedTextField(formatCel);
+	} catch (Exception ex){
+		ex.printStackTrace();
+	}
 	paine.add(Cel);
 	Cel.setBounds(350, 120, 55, 30);
 	paine.add(txtCel);
 	txtCel.setBounds(400, 120, 255, 30);
 	
+	try {
+		formatRG = new MaskFormatter("##.###.###-A");
+		txtRG = new JFormattedTextField(formatRG);
+	} catch (Exception ex){
+		ex.printStackTrace();
+	}
 	paine.add(RG);
 	RG.setBounds(10, 155, 55, 30);
 	paine.add(txtRG);
 	txtRG.setBounds(90, 155, 255, 30);
 	
+	try {
+		formatCpf = new MaskFormatter("###.###.###-##");
+		txtCpf = new JFormattedTextField(formatCpf);
+	} catch (Exception ex){
+		ex.printStackTrace();
+	}
 	paine.add(Cpf);
 	Cpf.setBounds(350, 155, 55, 30);
 	paine.add(txtCpf);
 	txtCpf.setBounds(400, 155, 255, 30); 
 
-	
-	
 	
 	
 	
