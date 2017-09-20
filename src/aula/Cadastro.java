@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -59,6 +61,8 @@ public class Cadastro extends JFrame {
 	MaskFormatter formatRG = null;
 	MaskFormatter formatCpf = null;
 	MaskFormatter formatCep = null;
+	
+	model.Cadastro cad= new model.Cadastro();
 
 	public Cadastro(){
 	super("Cadastro");
@@ -172,6 +176,23 @@ public class Cadastro extends JFrame {
 
 	paine.add(btnsvr);
 	btnsvr.setBounds(230, 200, 130, 30);
+	btnsvr.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			cad.setNome(txtNome.getText());
+			cad.setEnd(txtEnd.getText());
+			cad.setBairro(txtB.getText());
+			cad.setCep(txtCep.getText());
+			cad.setCid(txtCid.getText());
+			cad.setTel(txtTel.getText());
+			cad.setCel(txtCel.getText());
+			cad.setRg(txtRG.getText());
+			cad.setCpf(txtCpf.getText());
+			
+			
+			
+		}
+		
+	});
 	
 	paine.add(btnimp);
 	btnimp.setBounds(380, 200, 130, 30);
